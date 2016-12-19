@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ProjetIOT</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+</head>
+<script type="text/javascript">
+var text;
+	function httpGetAsync(theUrl, callback){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(document.getElementById("content").innerHTML=xmlHttp.responseText);
+        	//var message=xmlHttp.responseText;
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+</script>
+
+
+<body>
+	<div id="content"> </div>
+	<h1>Site permettant de gérer la musique</h1>
+	<div class="musique">Quelle musique voulez-vous choisir?  <SELECT name="url" onchange="document.location.href = httpGetAsync(this.value, console.log)" target="_blank">
+	<OPTION value="https://dweet.io/dweet/for/projetIOT?action=musique&detail=dormir&detail=play">  Christophe Mae </OPTION>
+	<OPTION value="https://dweet.io/dweet/for/projetIOT?action=musique&detail=bonjour&detail=play"> Bakermat </OPTION>
+	<OPTION value="https://dweet.io/dweet/for/projetIOT?action=musique&detail=bonne nuit&detail=play"> Berceuse</OPTION> 
+	</SELECT>
+	<p id="myP">
+	Actuellement il y a: <script type="text/javascript"> text=httpGetAsync('https://dweet.io/get/latest/dweet/for/projetIOT',console.log)</script><script type="text/javascript"> document.getElementById('myP').appendChild(text);</script>
+	</p>
+	</div>
+
+	
+
+	<div>
+	<a href="https://dweet.io/dweet/for/projetIOT?action=musique&detail=pasdemusique&detail=play"><img src="play.jpg" height="110" width="130"></a>
+	<a href="https://dweet.io/dweet/for/projetIOT?action=musique&detail=pasdemusique&detail=pause"><img src="pause.png" height="100" width="100"></></a>
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("content").innerHTML=message;
+</script>
+</html>
